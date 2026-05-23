@@ -1,4 +1,4 @@
-name: Build and Deploy to ProFreeHost
+name: Deploy Plain Files to ProFreeHost
 
 on:
   push:
@@ -6,31 +6,20 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
-    name: Build & Sync Website
+  web-deploy:
+    name: Deploy Website
     runs-on: ubuntu-latest
     steps:
     - name: Get latest code
       uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Compile production build
-      run: npm run build
-
-    - name: Sync compiled files via FTP
+    
+    - name: Sync files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist/
         server-dir: /htdocs/
+
 
 
