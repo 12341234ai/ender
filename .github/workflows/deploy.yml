@@ -1,4 +1,4 @@
-name: Deploy to ProFreeHost
+name: Build and Deploy to ProFreeHost
 
 on:
   push:
@@ -6,18 +6,31 @@ on:
       - main
 
 jobs:
-  web-deploy:
-    name: Deploy Website
+  build-and-deploy:
+    name: Build & Sync Website
     runs-on: ubuntu-latest
     steps:
     - name: Get latest code
       uses: actions/checkout@v4
-    
-    - name: Sync files via FTP
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-node-version: 18
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Compile production build
+      run: npm run build
+
+    - name: Sync compiled files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./dist/  # If Replit built a 'build' folder instead, change this to ./build/
         server-dir: /htdocs/
 
