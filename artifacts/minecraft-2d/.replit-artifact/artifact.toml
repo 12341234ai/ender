@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Minecraft 2D"
+version = "1.0.0"
+id = "artifacts/minecraft-2d"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23218
+
+[services.development]
+run = "pnpm --filter @workspace/minecraft-2d run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/minecraft-2d", "run", "build" ]
+publicDir = "artifacts/minecraft-2d/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23218"
+BASE_PATH = "/"
