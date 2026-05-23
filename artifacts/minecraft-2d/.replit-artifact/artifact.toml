@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "Minecraft 2D"
+title = "Ender Giggle"
 version = "1.0.0"
 id = "artifacts/minecraft-2d"
 router = "path"
