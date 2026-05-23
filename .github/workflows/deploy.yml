@@ -3,7 +3,7 @@ name: Deploy to ProFreeHost
 on:
   push:
     branches:
-      - main  # Change this to master if your default branch is called master
+      - main
 
 jobs:
   web-deploy:
@@ -19,4 +19,5 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /://unaux.com  # Change this if your site files go in a different folder
+        server-dir: /htdocs/
+
