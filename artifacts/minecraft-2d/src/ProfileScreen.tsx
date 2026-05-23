@@ -58,7 +58,7 @@ export default function ProfileScreen({ onSelect }: { onSelect: (p: Profile) => 
       {/* Title */}
       <div style={{ marginBottom:32,textAlign:"center" }}>
         <div style={{ fontSize:"clamp(18px,4vw,38px)",fontWeight:"bold",color:"#7eff7e",textShadow:"3px 3px 0 #003300,-1px -1px 0 #003300",letterSpacing:2 }}>
-          MINECRAFT 3D
+          Ender Giggle
         </div>
         <div style={{ color:"#5da832",fontSize:11,marginTop:6,letterSpacing:1 }}>SELECT A PROFILE</div>
       </div>
